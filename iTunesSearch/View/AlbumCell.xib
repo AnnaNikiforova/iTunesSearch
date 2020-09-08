@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AlbumCell" customModule="iTunesSearch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="181"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="140" height="181"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HET-Dt-Tla">
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Z5f-tM-Ftc">
+                        <rect key="frame" x="0.0" y="145" width="140" height="36"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsL-kO-fu9">
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-M0-71Z">
+                                <rect key="frame" x="0.0" y="19" width="140" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="HFP-He-4zx"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Z5f-tM-Ftc" firstAttribute="top" secondItem="HET-Dt-Tla" secondAttribute="bottom" constant="5" id="5Ff-bo-7B9"/>
+                <constraint firstAttribute="bottom" secondItem="Z5f-tM-Ftc" secondAttribute="bottom" id="5Hg-Av-BDD"/>
+                <constraint firstAttribute="trailing" secondItem="HET-Dt-Tla" secondAttribute="trailing" id="EUJ-KQ-43n"/>
+                <constraint firstItem="Z5f-tM-Ftc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="L15-ET-Tse"/>
+                <constraint firstItem="HET-Dt-Tla" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OMg-P1-3lJ"/>
+                <constraint firstAttribute="trailing" secondItem="Z5f-tM-Ftc" secondAttribute="trailing" id="VRM-EC-eAc"/>
+                <constraint firstItem="HET-Dt-Tla" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="liq-Y2-ZeP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="148" height="142"/>
+            <connections>
+                <outlet property="albumNameLabel" destination="QsL-kO-fu9" id="zts-4J-umW"/>
+                <outlet property="artistLabel" destination="Qd7-M0-71Z" id="kYR-si-Wdo"/>
+                <outlet property="artworkImage" destination="HET-Dt-Tla" id="jrB-E9-2nS"/>
+            </connections>
+            <point key="canvasLocation" x="208.69565217391306" y="184.15178571428569"/>
+        </collectionViewCell>
+    </objects>
+</document>
