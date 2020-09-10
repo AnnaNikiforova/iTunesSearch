@@ -12,7 +12,6 @@ class MainVC: UIViewController {
     
     let cellIdentifier = "AlbumCell"
     let segueIdentifier = "ToDetailVC"
-    var networkManager = NetworkManager()
     var albums = [Album]()
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -69,13 +68,18 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
         let numberOfItemsPerRow: CGFloat = 2
         let interItemSpacing: CGFloat = 20
         let labelStackHeight: CGFloat = 41
-        let width = (collectionView.frame.width - (numberOfItemsPerRow - 1) * interItemSpacing) / numberOfItemsPerRow
+        let edgeInsetsSum: CGFloat = 40
+        let width = (collectionView.frame.width - edgeInsetsSum - (numberOfItemsPerRow - 1) * interItemSpacing) / numberOfItemsPerRow
         let height = width + labelStackHeight
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
     }
     
 }
@@ -86,7 +90,7 @@ extension MainVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != nil || searchBar.text != "" {
-            networkManager.fetchAlbumData(searchString: searchBar.text!) { albums in
+            NetworkManager.fetchAlbumData(searchString: searchBar.text!) { albums in
                 self.albums = albums
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -95,6 +99,13 @@ extension MainVC: UISearchBarDelegate {
         }
         searchBar.resignFirstResponder()
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+           if searchBar.text == nil || searchBar.text == "" {
+           albums.removeAll()
+           collectionView.reloadData()
+           }
+       }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)

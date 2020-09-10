@@ -12,7 +12,6 @@ class DetailVC: UIViewController {
     
     var album: Album?
     let cellIdentifier = "trackCell"
-    var networkManager = NetworkManager()
     var tracks = [Track]()
     
     @IBOutlet weak var artworkImage: UIImageView!
@@ -32,7 +31,7 @@ class DetailVC: UIViewController {
     // MARK: Methods
     func fetchTrackData() {
         guard let album = album else { return }
-        networkManager.fetchTrackData(collectionIdString: album.collectionId) { tracks in
+        NetworkManager.fetchTrackData(collectionIdString: album.collectionId) { tracks in
             self.tracks = tracks
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -42,13 +41,14 @@ class DetailVC: UIViewController {
     
     func setUI() {
         Helpers.addRoundedCorners(to: artworkImage)
-        if let album = album {
-            artworkImage.imageFromUrl(url: album.artwork)
-            albumNameLabel.text = album.name
-            artistLabel.text = album.artist
-            genreLabel.text = album.genre
-            yearLabel.text = Helpers.formatDate(date: album.year)
-        }
+        
+        guard let album = album else { return }
+        artworkImage.imageFromUrl(url: album.artwork)
+        albumNameLabel.text = album.name
+        artistLabel.text = album.artist
+        genreLabel.text = album.genre
+        yearLabel.text = Helpers.formatDate(date: album.year)
+        
         tableView.tableFooterView = UIView()
     }
     

@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3UM-Og-bBr">
+                            <searchBar contentMode="redraw" placeholder="Artists, Songs, Lyrics and More" translatesAutoresizingMaskIntoConstraints="NO" id="3UM-Og-bBr">
                                 <rect key="frame" x="0.0" y="93" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="E6e-yg-sgl"/>
@@ -27,7 +27,7 @@
                                 </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="luB-WT-8un">
-                                <rect key="frame" x="20" y="152" width="374" height="710"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lzr-n2-2uz">
                                     <size key="itemSize" width="128" height="128"/>
@@ -57,8 +57,8 @@
                             <constraint firstItem="3UM-Og-bBr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SBP-vE-g0M"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="luB-WT-8un" secondAttribute="bottom" id="V0E-3T-kW4"/>
                             <constraint firstItem="luB-WT-8un" firstAttribute="top" secondItem="3UM-Og-bBr" secondAttribute="bottom" constant="15" id="c2j-qn-uVP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="luB-WT-8un" secondAttribute="trailing" constant="20" id="eJ1-wb-8kQ"/>
-                            <constraint firstItem="luB-WT-8un" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="oUI-Ul-aPf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="luB-WT-8un" secondAttribute="trailing" id="eJ1-wb-8kQ"/>
+                            <constraint firstItem="luB-WT-8un" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oUI-Ul-aPf"/>
                             <constraint firstItem="3UM-Og-bBr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="rko-4h-KRl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

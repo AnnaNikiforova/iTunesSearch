@@ -13,7 +13,7 @@ let trackURL = "https://itunes.apple.com/lookup?entity=song&id="
 
 class NetworkManager {
     
-    func fetchAlbumData(searchString: String, complition: @escaping ([Album])->()) {
+    static func fetchAlbumData(searchString: String, complition: @escaping ([Album])->()) {
         var albums: [Album] = []
         let searchString = searchString.replacingOccurrences(of: " ", with: "+")
         guard let url = URL(string: "\(albumURL)\(searchString)") else { return }
@@ -35,7 +35,7 @@ class NetworkManager {
         
     }
     
-    func fetchTrackData(collectionIdString: Int, complition: @escaping ([Track])->()) {
+    static func fetchTrackData(collectionIdString: Int, complition: @escaping ([Track])->()) {
         var tracks: [Track] = []
         guard let url = URL(string: "\(trackURL)\(collectionIdString)") else { return }
         let session = URLSession.shared
