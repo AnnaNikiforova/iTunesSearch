@@ -20,12 +20,18 @@ class DetailVC: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTrackData()
         setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        activityIndicator.startAnimating()
     }
     
     // MARK: Methods
@@ -35,6 +41,7 @@ class DetailVC: UIViewController {
             self.tracks = tracks
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
         }
     }
@@ -50,6 +57,7 @@ class DetailVC: UIViewController {
         yearLabel.text = Helpers.formatDate(date: album.year)
         
         tableView.tableFooterView = UIView()
+        activityIndicator.hidesWhenStopped = true
     }
     
     func loadImage(url: String) {
