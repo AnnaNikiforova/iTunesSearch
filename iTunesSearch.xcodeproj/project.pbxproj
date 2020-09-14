@@ -21,7 +21,6 @@
 		95049CFF250156CE006528FA /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95049CFE250156CD006528FA /* Track.swift */; };
 		95049D0225041CEC006528FA /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95049D0125041CEC006528FA /* Helpers.swift */; };
 		95049D04250433C4006528FA /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95049D03250433C3006528FA /* DetailVC.swift */; };
-		95ED18FE250589CD00B6AA89 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED18FD250589CC00B6AA89 /* Extensions.swift */; };
 		95F052BC25067F30002F2A38 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F052BB25067F30002F2A38 /* TrackCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +53,6 @@
 		95049CFE250156CD006528FA /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		95049D0125041CEC006528FA /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		95049D03250433C3006528FA /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
-		95ED18FD250589CC00B6AA89 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		95F052BB25067F30002F2A38 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +99,7 @@
 				95049CF524FFEC38006528FA /* Model */,
 				95049CF424FFEC2D006528FA /* View */,
 				95049CF324FFEC1E006528FA /* Controller */,
+				95580243250BF97E00D92E4F /* Services */,
 				95049D0025041C9A006528FA /* Helpers */,
 				95049CDA24FFEBEE006528FA /* Assets.xcassets */,
 				95049CD324FFEBE3006528FA /* SceneDelegate.swift */,
@@ -144,7 +143,6 @@
 			children = (
 				95049CF824FFECD1006528FA /* Album.swift */,
 				95049CFE250156CD006528FA /* Track.swift */,
-				95049CF624FFEC75006528FA /* NetworkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,9 +151,16 @@
 			isa = PBXGroup;
 			children = (
 				95049D0125041CEC006528FA /* Helpers.swift */,
-				95ED18FD250589CC00B6AA89 /* Extensions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		95580243250BF97E00D92E4F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				95049CF624FFEC75006528FA /* NetworkManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +271,6 @@
 				95049CD624FFEBE3006528FA /* MainVC.swift in Sources */,
 				95049CD224FFEBE3006528FA /* AppDelegate.swift in Sources */,
 				95F052BC25067F30002F2A38 /* TrackCell.swift in Sources */,
-				95ED18FE250589CD00B6AA89 /* Extensions.swift in Sources */,
 				95049D04250433C4006528FA /* DetailVC.swift in Sources */,
 				95049CD424FFEBE3006528FA /* SceneDelegate.swift in Sources */,
 				95049CFC250018CD006528FA /* AlbumCell.swift in Sources */,

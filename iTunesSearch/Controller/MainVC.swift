@@ -16,12 +16,14 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
         setupCollectionView()
+        setupActivityIndicator()
     }
     
     // MARK: Methods
@@ -32,6 +34,10 @@ class MainVC: UIViewController {
     private  func setupCollectionView() {
         let nib = UINib(nibName: cellIdentifier, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
+    }
+    
+    private func setupActivityIndicator() {
+        activityIndicator.hidesWhenStopped = true
     }
     
     // Navigation
@@ -90,12 +96,14 @@ extension MainVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != nil || searchBar.text != "" {
+            activityIndicator.startAnimating()
             NetworkManager.fetchAlbumData(searchString: searchBar.text!) { albums in
                 self.albums = albums
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
             }
+            activityIndicator.stopAnimating()
         }
         searchBar.resignFirstResponder()
     }

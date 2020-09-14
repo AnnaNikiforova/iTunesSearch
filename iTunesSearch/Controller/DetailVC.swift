@@ -43,13 +43,27 @@ class DetailVC: UIViewController {
         Helpers.addRoundedCorners(to: artworkImage)
         
         guard let album = album else { return }
-        artworkImage.imageFromUrl(url: album.artwork)
+        loadImage(url: album.artwork)
         albumNameLabel.text = album.name
         artistLabel.text = album.artist
         genreLabel.text = album.genre
         yearLabel.text = Helpers.formatDate(date: album.year)
         
         tableView.tableFooterView = UIView()
+    }
+    
+    func loadImage(url: String) {
+        if let imageURL = URL(string: url) {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: imageURL)
+                if let data = data {
+                    let image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        self.artworkImage.image = image
+                    }
+                }
+            }
+        }
     }
     
 }
