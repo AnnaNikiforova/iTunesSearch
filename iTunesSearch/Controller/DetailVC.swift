@@ -62,15 +62,15 @@ class DetailVC: UIViewController {
     
     func loadImage(url: String) {
         if let imageURL = URL(string: url) {
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: imageURL)
-                if let data = data {
-                    let image = UIImage(data: data)
+            let task = URLSession.shared.dataTask(with: imageURL) { data, response, error in
+                guard let data = data, error == nil else { return }
+                if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self.artworkImage.image = image
                     }
                 }
             }
+            task.resume()
         }
     }
     

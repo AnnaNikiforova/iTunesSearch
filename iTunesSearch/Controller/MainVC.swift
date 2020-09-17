@@ -24,12 +24,13 @@ class MainVC: UIViewController {
         setupSearchBar()
         setupCollectionView()
         setupActivityIndicator()
+        hideKeyboardWhenTappedElsewhere()
     }
     
     // MARK: Methods
     private func setupSearchBar() {
-           searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-       }
+        searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+    }
     
     private  func setupCollectionView() {
         let nib = UINib(nibName: cellIdentifier, bundle: nil)
@@ -38,6 +39,22 @@ class MainVC: UIViewController {
     
     private func setupActivityIndicator() {
         activityIndicator.hidesWhenStopped = true
+    }
+    
+    private func showActivityController() {
+        let ac = UIAlertController(title: "Oops! We can't find any items matching your search.", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Try again", style: .cancel))
+        present(ac, animated: true)
+    }
+    
+    private func hideKeyboardWhenTappedElsewhere() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // Navigation
@@ -95,28 +112,45 @@ extension MainVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
 extension MainVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar.text != nil || searchBar.text != "" {
-            activityIndicator.startAnimating()
+        activityIndicator.startAnimating()
+        
+        // fetches data if search text isn't empty
+        if searchBar.text?.isEmpty != true {
             NetworkManager.fetchAlbumData(searchString: searchBar.text!) { albums in
                 self.albums = albums
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                
+                // albums load if search is valid
+                if albums.isEmpty != true {
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                    
+                    // alert pops up if search is not valid
+                } else {
+                    DispatchQueue.main.async {
+                        self.showActivityController()
+                    }
                 }
             }
-            activityIndicator.stopAnimating()
+            
+            // alert pops up if search text is empty
+        } else {
+            self.showActivityController()
         }
+        
+        activityIndicator.stopAnimating()
         searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-           if searchBar.text == nil || searchBar.text == "" {
-           albums.removeAll()
-           collectionView.reloadData()
-           }
-       }
+        if searchBar.text == nil || searchBar.text == "" {
+            albums.removeAll()
+            collectionView.reloadData()
+        }
+    }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
     }
-
+    
 }

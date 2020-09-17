@@ -33,17 +33,16 @@ class AlbumCell: UICollectionViewCell {
             self.artworkImage.image = imageFromCache
         } else {
             if let imageURL = URL(string: url) {
-                DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: imageURL)
-                    if let data = data {
-                        if let imageToCache = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.imageCache.setObject(imageToCache, forKey: url as AnyObject)
-                                self.artworkImage.image = imageToCache
-                            }
+                let task = URLSession.shared.dataTask(with: imageURL) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    if let imageToCache = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.imageCache.setObject(imageToCache, forKey: url as AnyObject)
+                            self.artworkImage.image = imageToCache
                         }
                     }
                 }
+                task.resume()
             }
         }
     }
